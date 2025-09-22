@@ -309,15 +309,7 @@ button:hover::before {
   border-radius: 25px 25px 0 0;
 }
 
-.photo-card::after {
-  content: '💜';
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 1.5rem;
-  opacity: 0.6;
-  animation: heartBeat 2.5s ease-in-out infinite;
-}
+.photo-card::after { content: none !important; }
 
 .photo-card:hover {
   transform: translateY(-15px) scale(1.08) rotate(0deg);
