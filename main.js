@@ -65,43 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
   if (!revealBtn) return;
 
-  revealBtn.addEventListener("click", function() {
-    document.body.classList.remove('front');
-    console.log("Simple fallback triggered");
-    const letter = document.getElementById("letter");
-    const title = document.getElementById("title");
-    const note = document.getElementById("note");
-    const bottom = document.getElementById("bottom");
-    const photos = document.getElementById("photos");
-    
-    if (letter) {
-      if (title) title.style.display = "none";
-      if (note) note.style.display = "none";
-      
-      letter.style.display = "block";
-      letter.style.opacity = "1";
-      letter.classList.add("show");
-      
-      if (bottom) {
-        bottom.classList.add("show");
-        bottom.style.display = "block";
-        bottom.style.opacity = "1";
-      }
-      
-      if (photos) {
-        photos.classList.add("show");
-        photos.style.display = "block";
-        photos.style.opacity = "1";
-      }
-      
-      console.log("Letter should be visible now!");
-      setTimeout(() => { revealBtn.style.display = "none"; }, 0);
-    } else {
-      console.log("Letter element not found!");
-    }
-  }, { once: true });
-
-
   revealBtn.addEventListener("click", function () {
     document.body.classList.remove('front');
     console.log("Button clicked!"); 
