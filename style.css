@@ -183,16 +183,7 @@ button:hover::before {
 .letter::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #7c3aed, #9333ea); }
 
 
-.letter::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background: linear-gradient(90deg, #8b5cf6, #a855f7, #c084fc, #8b5cf6);
-  border-radius: 25px 25px 0 0;
-}
+.letter::before { content: none; }
 
 .letter::after { content: none; }
 

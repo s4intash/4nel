@@ -132,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const photoCards = document.querySelectorAll('.photo-card');
   photoCards.forEach((card, index) => {
-    // Ensure no decorative heart pseudo-element is shown
     card.style.setProperty('--no-heart', '1');
     card.addEventListener('mouseenter', function() {
       this.style.transform = 'translateY(-20px) scale(1.1) rotate(0deg)';
