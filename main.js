@@ -65,69 +65,53 @@ document.addEventListener("DOMContentLoaded", () => {
   
   if (!revealBtn) return;
 
+  // Keep button raised immediately on load to avoid hover flicker
+  revealBtn.classList.add('raised');
+
+  // If previously revealed, skip landing and show next page immediately
+  if (sessionStorage.getItem('revealed') === '1') {
+    proceedToNext();
+    return;
+  }
+
+  // Click reveals and persists state
   revealBtn.addEventListener("click", function () {
+    sessionStorage.setItem('revealed', '1');
+    proceedToNext();
+  }, { once: true });
+
+  function proceedToNext() {
     document.body.classList.remove('front');
-    console.log("Button clicked!"); 
+    try { if (revealBtn) revealBtn.remove(); } catch (_) {}
     const title = document.getElementById("title");
     const note = document.getElementById("note");
     const letter = document.getElementById("letter");
     const bottom = document.getElementById("bottom");
     const photos = document.getElementById("photos");
 
-    console.log("Elements found:", {title, note, letter, bottom, photos}); 
-
-
     if (title) {
-      title.style.transition = "all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
-      title.style.opacity = "0";
-      title.style.transform = "translateY(-40px) scale(0.9)";
+      title.style.display = "none";
     }
-    
     if (note) {
-      note.style.transition = "all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
-      note.style.opacity = "0";
-      note.style.transform = "translateY(-30px) scale(0.9)";
+      note.style.display = "none";
     }
-
-    setTimeout(() => {
-      console.log("Starting letter reveal..."); 
-      
-      if (title) title.style.display = "none";
-      if (note) note.style.display = "none";
-
-      if (letter) {
-        console.log("Showing letter..."); 
-        letter.style.display = "block";
-        letter.style.opacity = "0";
-        letter.style.transform = "translateY(60px) scale(0.95)";
-        
-        setTimeout(() => {
-          letter.classList.add("show");
-          letter.style.opacity = "1";
-          letter.style.transform = "translateY(0) scale(1)";
-          console.log("Letter should be visible now"); 
-          
-          setTimeout(() => {
-            if (bottom) {
-              bottom.classList.add("show");
-              bottom.style.opacity = "1";
-              bottom.style.transform = "translateY(0)";
-            }
-            
-            if (photos) {
-              photos.classList.add("show");
-              photos.style.opacity = "1";
-              photos.style.transform = "translateY(0)";
-            }
-            
-            revealBtn.style.display = "none";
-          }, 800);
-        }, 150);
-      } else {
-        console.log("Letter element not found!"); 
-      }
-    }, 1000);
-  }, { once: true });
+    if (letter) {
+      letter.classList.add("show");
+      letter.style.display = "block";
+      letter.style.opacity = "1";
+      letter.style.transform = "translateY(0) scale(1)";
+    }
+    if (bottom) {
+      bottom.classList.add("show");
+      bottom.style.opacity = "1";
+      bottom.style.transform = "translateY(0)";
+    }
+    if (photos) {
+      photos.classList.add("show");
+      photos.style.opacity = "1";
+      photos.style.transform = "translateY(0)";
+    }
+  }
 
 
   const photoCards = document.querySelectorAll('.photo-card');

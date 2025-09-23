@@ -111,7 +111,8 @@ body.front h1::after { content: none; }
     0 0 0 0 rgba(139, 92, 246, 0.7);
   position: relative;
   overflow: hidden;
-  animation: fadeInUp 1s ease-out 1.2s both;
+  /* Coordinated entrance lift with text */
+  animation: buttonIntro 0.9s ease-out 0.8s both;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-family: "Playfair Display", serif;
@@ -131,12 +132,12 @@ button::before {
   transition: left 0.6s;
     }
 
-    button:hover {
+button:not(.raised):hover {
   transform: translateY(-4px) scale(1.08);
   box-shadow: 
     0 20px 50px rgba(139, 92, 246, 0.6),
     0 0 0 0 rgba(139, 92, 246, 0.7);
-  animation: pulse 0.8s ease-in-out;
+  animation: none;
  }
 
 button:hover::before {
@@ -146,6 +147,14 @@ button:hover::before {
     button:active {
   transform: translateY(-2px) scale(1.05);
     }
+
+/* Persistently raised state after first hover */
+button.raised {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow:
+    0 20px 50px rgba(139, 92, 246, 0.6),
+    0 0 0 0 rgba(139, 92, 246, 0.7);
+}
 
     .letter {
   width: 95%;
@@ -209,7 +218,6 @@ button:hover::before {
     .letter.show {
       display: block;
       opacity: 1;
-  animation: slideInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .bottom-note {
@@ -219,7 +227,7 @@ button:hover::before {
   font-weight: 600;
       display: none;
       opacity: 0;
-  transition: all 1.2s ease;
+  transition: all 0.6s ease;
   text-shadow: 0 3px 15px rgba(139, 92, 246, 0.4);
   font-family: "Dancing Script", cursive;
   letter-spacing: 2px;
@@ -229,7 +237,6 @@ button:hover::before {
     .bottom-note.show {
       display: block;
       opacity: 1;
-  animation: fadeInUp 1.2s ease-out;
     }
 
 
@@ -239,7 +246,7 @@ button:hover::before {
       z-index: 6;
       display: none;
       opacity: 0;
-  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       width: 100%;
   max-width: 900px;
 }
@@ -247,7 +254,6 @@ button:hover::before {
 .photo-page.show { 
   display: block; 
   opacity: 1; 
-  animation: slideInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
     .photo-title {
@@ -366,6 +372,17 @@ button:hover::before {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes buttonIntro {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.08);
   }
 }
 
