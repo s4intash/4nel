@@ -68,15 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Keep button raised immediately on load to avoid hover flicker
   revealBtn.classList.add('raised');
 
-  // If previously revealed, skip landing and show next page immediately
-  if (sessionStorage.getItem('revealed') === '1') {
-    proceedToNext();
-    return;
-  }
-
-  // Click reveals and persists state
   revealBtn.addEventListener("click", function () {
-    sessionStorage.setItem('revealed', '1');
     proceedToNext();
   }, { once: true });
 
